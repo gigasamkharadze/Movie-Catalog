@@ -1,5 +1,10 @@
 <template>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+  <div id="app">
+    <Nav />
+    <router-view></router-view>
+  </div>
 </template>
+
+<script setup>
+import Nav from "./components/Nav.vue";
+</script>
