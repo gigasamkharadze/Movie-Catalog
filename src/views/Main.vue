@@ -1,9 +1,3 @@
-<template>
-  <div class="flex flex-col gap-3">
-    <MainMovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
-  </div>
-</template>
-
 <script setup>
 import {API_KEY} from "../../config.js";
 import {onMounted} from "vue";
@@ -27,3 +21,9 @@ async function getMovies(){
 
 onMounted(() => getMovies());
 </script>
+
+<template>
+  <div class="grid gap-2 grid-cols-1 mx-auto lg:grid-cols-2 xl:grid-cols-3 p-6">
+    <MainMovieCard v-for="movie in movies" :key="movie.id" :movie="movie"/>
+  </div>
+</template>
