@@ -1,17 +1,15 @@
 <script setup>
 import {computed, onMounted, watch} from "vue";
-import {ref} from "vue";
 import MainMovieCard from "../components/MainMovieCard.vue";
 import SharedSearchBar from "../components/shared/SharedSearchBar.vue";
 import {useRoute} from "vue-router";
-import MoviesApiService from "../services/api/moviesApiService.js";
+import {useMoviesStore} from "../store/movies.js";
 
-const movies = ref([]);
+const moviesStore = useMoviesStore();
+const movies = computed(() => moviesStore.movies);
 
-async function getMovies(){
-  const moviesApiService = new MoviesApiService('discover/movie');
-  const data = await moviesApiService.fetch('page=1')
-  movies.value = data.results;
+const getMovies = async () => {
+  await moviesStore.getMovies();
 }
 
 onMounted(() => getMovies());
