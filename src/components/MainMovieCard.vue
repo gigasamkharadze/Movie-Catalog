@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[300px] mx-auto">
+  <div class="flex flex-col w-[300px]">
     <img :src="IMAGE_BASE_URL + props.movie.poster_path" :alt="props.movie.title" class="rounded-xl mb-4"/>
     <div class="relative flex flex-col justify-center gap-3">
       <h2 class="text-2xl font-bold line-clamp-1">{{props.movie.title}}</h2>

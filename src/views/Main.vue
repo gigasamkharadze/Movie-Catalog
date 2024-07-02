@@ -1,8 +1,10 @@
 <script setup>
 import {API_KEY} from "../../config.js";
-import {onMounted} from "vue";
+import {computed, onMounted, watch} from "vue";
 import {ref} from "vue";
 import MainMovieCard from "../components/MainMovieCard.vue";
+import SharedSearchBar from "../components/shared/SharedSearchBar.vue";
+import {useRoute} from "vue-router";
 
 const movies = ref([]);
 
@@ -20,10 +22,24 @@ async function getMovies(){
 }
 
 onMounted(() => getMovies());
+const route = useRoute();
+
+const title = computed(() => route.query.search || "");
+
+watch(
+  title,
+  async (newValue) => {
+    console.log(newValue);
+  }
+)
+
 </script>
 
 <template>
-  <div class="grid gap-2 grid-cols-1 mx-auto lg:grid-cols-2 xl:grid-cols-3 p-6">
-    <MainMovieCard v-for="movie in movies" :key="movie.id" :movie="movie"/>
+  <div class="px-12">
+    <SharedSearchBar/>
+    <div class="grid grow grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+      <MainMovieCard v-for="movie in movies" :key="movie.id" :movie="movie"/>
+    </div>
   </div>
 </template>
