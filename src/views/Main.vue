@@ -1,24 +1,15 @@
 <script setup>
-import {API_KEY} from "../../config.js";
 import {computed, onMounted, watch} from "vue";
-import {ref} from "vue";
 import MainMovieCard from "../components/MainMovieCard.vue";
 import SharedSearchBar from "../components/shared/SharedSearchBar.vue";
 import {useRoute} from "vue-router";
+import {useMoviesStore} from "../store/movies.js";
 
-const movies = ref([]);
+const moviesStore = useMoviesStore();
+const movies = computed(() => moviesStore.movies);
 
-async function getMovies(){
-  const options = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${API_KEY}`
-    }
-  };
-  const response = await fetch(`https://api.themoviedb.org/3/discover/movie?page=1&api_key=${API_KEY}`, options);
-  const data = await response.json();
-  movies.value = data.results;
+const getMovies = async () => {
+  await moviesStore.getMovies();
 }
 
 onMounted(() => getMovies());
