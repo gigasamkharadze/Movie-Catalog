@@ -14,7 +14,8 @@ export const useMoviesStore = defineStore({
             if (this.cache[page]) {
                 this.movies = this.cache[page];
             } else {
-                const data = await moviesApiService.fetch('page=1')
+                const data = await moviesApiService.getPage(page)
+                this.cache[page] = data.results;
                 this.movies = data.results;
             }
         },
