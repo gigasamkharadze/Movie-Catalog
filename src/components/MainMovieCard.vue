@@ -1,3 +1,13 @@
+<script setup>
+const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
+
+const props = defineProps({
+  movie: Object,
+  rowReverse: Boolean,
+});
+
+</script>
+
 <template>
   <div class="flex flex-col w-[300px]">
     <img :src="IMAGE_BASE_URL + props.movie.poster_path" :alt="props.movie.title" class="rounded-xl mb-4"/>
@@ -8,13 +18,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import {IMAGE_BASE_URL} from "../../config.js";
-
-const props = defineProps({
-  movie: Object,
-  rowReverse: Boolean,
-});
-
-</script>
