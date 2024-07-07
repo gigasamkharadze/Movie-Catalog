@@ -1,13 +1,13 @@
 <script setup>
-import {ref, watch} from "vue";
-import {useRouter} from "vue-router";
+import {getCurrentInstance, ref} from "vue";
 
 const title = ref("");
-const router = useRouter();
 
-watch(title, (newValue) => {
-  router.push({query: {search: newValue}});
-});
+const {emit} = getCurrentInstance();
+const search = (title) => {
+  emit("search", title);
+}
+
 </script>
 
 <template>
@@ -17,7 +17,13 @@ watch(title, (newValue) => {
            name="title"
            v-model="title"
            placeholder="Search for a movie"
-           class="w-full my-4 mx-auto py-3 px-4 border border-gray-300 rounded-xl focus:outline-gray-400" />
-    <img src="/search.png" alt="search icon" class="w-8 aspect-square absolute right-3 hover:cursor-pointer">
+           class="w-full my-4 mx-auto py-3 px-4 border border-gray-300 rounded-xl focus:outline-gray-400"
+           @keyup.enter="search(title)"
+    />
+    <img src="/search.png"
+         alt="search icon"
+         class="w-8 aspect-square absolute right-3 hover:cursor-pointer"
+         @click="search(title)"
+    >
   </div>
 </template>

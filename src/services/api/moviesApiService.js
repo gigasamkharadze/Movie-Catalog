@@ -23,6 +23,16 @@ class MoviesApiService {
     }
   }
 
+  async getByTitle(title, page = 1) {
+    try {
+        const url = `${this.baseUrl}/search/movie?query=${title}&page=${page}&api_key=${this.API_KEY}`;
+        const response = await fetch(url, this.config);
+        return await response.json();
+    } catch (error) {
+        this.handleError(error);
+    }
+  }
+
     handleError(error) {
         console.error('Error:', error);
     }

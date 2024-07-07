@@ -19,5 +19,9 @@ export const useMoviesStore = defineStore({
                 this.movies = data.results;
             }
         },
+        async getMoviesByTitle(title, page = 1) {
+            const data = await moviesApiService.getByTitle(title, page);
+            this.movies = data.results;
+        }
     }
 });
