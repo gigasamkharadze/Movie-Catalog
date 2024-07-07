@@ -9,12 +9,30 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="flex flex-col w-[300px]">
-    <img :src="IMAGE_BASE_URL + props.movie.poster_path" :alt="props.movie.title" class="rounded-xl mb-4"/>
-    <div class="relative flex flex-col justify-center gap-3">
-      <h2 class="text-2xl font-bold line-clamp-1">{{props.movie.title}}</h2>
-      <p class="line-clamp-4">{{props.movie.overview}}</p>
-      <button class="border-2 border-black w-fit px-4 py-2 text-white bg-gray-800 mb-4">Add to Favorites</button>
+  <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+    <router-link :to="{ name: 'details', params: { id: props.movie.id } }">
+      <img
+        :src="`${IMAGE_BASE_URL}${props.movie.poster_path}`"
+        alt="movie poster"
+        class="w-full h-64 object-cover rounded-t-lg"
+      />
+    </router-link>
+    <div class="p-5">
+      <router-link :to="{ name: 'details', params: { id: props.movie.id } }">
+        <h2 class="mb-2 text-2xl font-bold tracking-tight">{{props.movie.title}}</h2>
+      </router-link>
+      <p class="line-clamp-4 mb-3 font-normal">{{props.movie.overview}}</p>
+      <div class="flex items-center mb-4">
+        <img src="../assets/star.svg" class="w-4 h-4 me-1" alt="star icon" />
+        <p class="ms-2 text-sm font-bold text-gray-900">{{props.movie.vote_average}}</p>
+        <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
+        <span class="text-sm font-medium text-gray-900 underline">{{props.movie.vote_count}} reviews</span>
+      </div>
+      <router-link to="/favorites" class="inline-flex items-center px-4 py-3 text-sm font-medium text-center
+                                            text-white rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
+                                            dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Add to Favorites
+      </router-link>
     </div>
   </div>
 </template>

@@ -14,7 +14,7 @@ export default [
     },
     {
         path: '/movie/:id',
-        name: 'movie',
+        name: 'details',
         component: Movie
     },
     {
