@@ -30,8 +30,7 @@ const props = defineProps({
         <span class="text-sm font-medium text-gray-900 underline">{{props.movie.vote_count}} reviews</span>
       </div>
       <router-link to="/favorites" class="inline-flex items-center px-4 py-3 text-sm font-medium text-center
-                                            text-white rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
-                                            dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                            text-white rounded-lg bg-blue-800 ">
         Add to Favorites
       </router-link>
     </div>
