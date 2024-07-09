@@ -39,12 +39,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-col lg:flex-row p-6 gap-3 ">
-    <ImageCarousel :images="[]" />
-    <div class="">
+  <div class="flex flex-col w-9/12 mx-auto p-6 gap-3 shadow-2xl mb-10">
+    <ImageCarousel :images="images.backdrops" />
+    <div>
       <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{movie.title}}</h5>
       <p class="mb-3 font-normal text-gray-700">{{movie.overview}}</p>
-      <div class="w-1/3 grid grid-cols-2">
+      <div class="grid grid-cols-2">
         <span class="font-semibold text-gray-700">Genres:</span>
         <div><span v-for="genre in movie.genres" class="mr-2"> {{genre.name}}</span></div>
         <span class="font-semibold text-gray-700">Country:</span>
