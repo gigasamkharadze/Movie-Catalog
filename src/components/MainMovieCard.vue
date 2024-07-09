@@ -1,24 +1,23 @@
 <script setup>
-const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
+const IMAGE_BASE_URL_300 = import.meta.env.VITE_IMAGE_BASE_URL_300;
 
 const props = defineProps({
   movie: Object,
-  rowReverse: Boolean,
 });
 
 </script>
 
 <template>
   <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
-    <router-link :to="{ name: 'details', params: { id: props.movie.id } }">
+    <router-link :to="{ name: 'movie-details', params: { id: props.movie.id } }">
       <img
-        :src="`${IMAGE_BASE_URL}${props.movie.poster_path}`"
+        :src="`${IMAGE_BASE_URL_300}${props.movie.poster_path}`"
         alt="movie poster"
         class="w-full h-64 object-cover rounded-t-lg"
       />
     </router-link>
     <div class="p-5">
-      <router-link :to="{ name: 'details', params: { id: props.movie.id } }">
+      <router-link :to="{ name: 'movie-details', params: { id: props.movie.id } }">
         <h2 class="mb-2 text-2xl font-bold tracking-tight">{{props.movie.title}}</h2>
       </router-link>
       <p class="line-clamp-4 mb-3 font-normal">{{props.movie.overview}}</p>

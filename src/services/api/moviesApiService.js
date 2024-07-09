@@ -33,6 +33,26 @@ class MoviesApiService {
     }
   }
 
+  async getMovieById(id) {
+    try {
+        const url = `${this.baseUrl}/movie/${id}?api_key=${this.API_KEY}`;
+        const response = await fetch(url, this.config);
+        return await response.json();
+    } catch (error) {
+        this.handleError(error);
+    }
+  }
+
+  async getMovieImages(id) {
+    try {
+        const url = `${this.baseUrl}/movie/${id}/images?api_key=${this.API_KEY}`;
+        const response = await fetch(url, this.config);
+        return await response.json();
+    } catch (error) {
+        this.handleError(error);
+    }
+  }
+
     handleError(error) {
         console.error('Error:', error);
     }
