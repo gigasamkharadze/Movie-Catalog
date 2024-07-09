@@ -14,8 +14,9 @@ export default [
     },
     {
         path: '/movie/:id',
-        name: 'movie',
-        component: Movie
+        name: 'movie-details',
+        component: Movie,
+        props: true
     },
     {
         path: '/favorites',
