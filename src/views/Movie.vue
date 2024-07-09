@@ -2,6 +2,7 @@
 import {useRoute} from "vue-router";
 import {onMounted, reactive} from "vue";
 import moviesApiService from "../services/api/moviesApiService.js";
+import ImageCarousel from "../components/ImageCarousel.vue";
 
 const route = useRoute();
 const apiService = new moviesApiService();
@@ -38,8 +39,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-col lg:flex-row p-6 ">
-    <div class="p-5">
+  <div class="flex flex-col lg:flex-row p-6 gap-3 ">
+    <ImageCarousel :images="[]" />
+    <div class="">
       <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{movie.title}}</h5>
       <p class="mb-3 font-normal text-gray-700">{{movie.overview}}</p>
       <div class="w-1/3 grid grid-cols-2">
