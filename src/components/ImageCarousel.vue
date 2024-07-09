@@ -28,15 +28,15 @@ const setNextImage = () => {
 
 <template>
   <div id="controls-carousel" class="relative " data-carousel="static">
-    <div v-if="images.length > 0" class="relative size-full overflow-hidden rounded-lg ">
+    <div v-if="images.length > 0" class="relative rounded-lg ">
       <div v-for="(image, index) in images" :key="index"
-           :class="`duration-700 ease-in-out ${index === currentImageIndex ? 'active' : 'hidden'}`" data-carousel-item>
+           :class="`${index === currentImageIndex ? 'active' : 'hidden'}`">
         <img :src="`${IMAGE_BASE_URL_300}${image.file_path}`"
-             class="block w-full h-full mx-auto"
+             class="size-full"
              :alt="`Image for ${image.title || 'the movie'}`">
       </div>
     </div>
-    <div v-else class="flex items-center justify-center w-56 h-56 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+    <div v-else class="flex items-center justify-center w-96 h-96 mx-auto border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
       <div role="status">
         <img src="../assets/loading.svg" alt="loading"
              aria-hidden="true"
