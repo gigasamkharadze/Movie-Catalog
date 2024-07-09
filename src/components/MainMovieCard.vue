@@ -1,5 +1,7 @@
 <script setup>
-const IMAGE_BASE_URL_300 = import.meta.env.VITE_IMAGE_BASE_URL_300;
+
+
+import {IMAGE_BASE_URL_300} from "../constants.js";
 
 const props = defineProps({
   movie: Object,
