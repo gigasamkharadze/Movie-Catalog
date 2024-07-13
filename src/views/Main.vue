@@ -21,7 +21,7 @@ onMounted(() => getMovies());
 <template>
   <div class="px-12">
     <SharedSearchBar @search="getMoviesByTitle"/>
-    <div class="grid grow gap-x-4 gap-y-8 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+    <div class="grid grow gap-x-4 gap-y-8 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       <MainMovieCard v-for="movie in movies" :key="movie.id" :movie="movie"/>
     </div>
   </div>
