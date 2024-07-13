@@ -9,6 +9,7 @@ const moviesStore = useMoviesStore();
 const movies = computed(() => moviesStore.movies);
 const totalPages = 500;
 const currentPage = ref(1);
+const title = ref("");
 
 const onPageChange = async (page) => {
   currentPage.value = page;
@@ -16,15 +17,21 @@ const onPageChange = async (page) => {
     top: 0,
     behavior: "smooth",
   });
-  await getMovies(currentPage.value);
+  if (title.value) {
+    await moviesStore.getMoviesByTitle(title.value, currentPage.value);
+  } else {
+    await moviesStore.getMovies(currentPage.value);
+  }
 };
 
 const getMovies = async (page) => {
   await moviesStore.getMovies(page);
 };
 
-const getMoviesByTitle = async (title) => {
-  await moviesStore.getMoviesByTitle(title);
+const searchMovies = async (movieTitle) => {
+  currentPage.value = 1;
+  title.value = movieTitle;
+  await moviesStore.getMoviesByTitle(movieTitle, currentPage.value);
 };
 
 onMounted(() => getMovies(currentPage.value));
@@ -32,7 +39,7 @@ onMounted(() => getMovies(currentPage.value));
 
 <template>
   <div class="px-12">
-    <SharedSearchBar @search="getMoviesByTitle"/>
+    <SharedSearchBar @search="searchMovies"/>
     <div class="grid grow gap-x-4 gap-y-8 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       <MainMovieCard v-for="movie in movies" :key="movie.id" :movie="movie"/>
     </div>
