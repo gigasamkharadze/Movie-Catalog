@@ -63,7 +63,8 @@ onMounted(() => {
       <ImageCarousel :images="images.backdrops" />
       <div>
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{movie.title}}</h5>
-        <p class="mb-3 font-normal text-gray-700">{{movie.overview}}</p>
+        <p class="mb-3 first-letter:text-5xl first-letter:font-bold first-letter:text-gray-900 first-letter:me-3
+                  first-letter:float-start">{{movie.overview}}</p>
         <div class="grid grid-cols-2 gap-y-4 gap-x-2 p-4 bg-white rounded-lg shadow-md">
           <span class="text-gray-700">Genres:</span>
           <div class="flex flex-wrap space-x-2">
