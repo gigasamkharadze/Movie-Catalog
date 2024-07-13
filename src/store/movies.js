@@ -8,8 +8,8 @@ export const useMoviesStore = defineStore({
     id: 'movies',
     state: () => ({
         movies: [],
-        favorites: useLocalStorage('favorites', []),
         cache: {},
+        favorites: useLocalStorage('favorites', [])
     }),
     actions: {
         async getMovies(page = 1) {
@@ -25,13 +25,16 @@ export const useMoviesStore = defineStore({
             const data = await moviesApiService.getByTitle(title, page);
             this.movies = data.results;
         },
-        addToFavorites(movie) {
-            if (!this.favorites.value.find(favorite => favorite.id === movie.id)) {
-                this.favorites.value.push(movie);
+        addToFavorites(movieId) {
+            if (!this.favorites.includes(movieId)) {
+                this.favorites.push(movieId);
             }
         },
-        removeFromFavorites(movie) {
-            this.favorites.value = this.favorites.value.filter(favorite => favorite.id !== movie.id);
+        removeFromFavorites(movieId) {
+            this.favorites = this.favorites.filter(id => id !== movieId);
+        },
+        isFavorite(movieId) {
+            return this.favorites.includes(movieId);
         }
     }
 });
