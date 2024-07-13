@@ -1,16 +1,21 @@
 <script setup>
-
-
+import {useMoviesStore} from "../store/movies.js";
 import {IMAGE_BASE_URL_300} from "../constants.js";
 
 const props = defineProps({
   movie: Object,
 });
 
+const moviesStore = useMoviesStore();
+const addToFavorites = () => {
+  console.log(props.movie, "added to favorites");
+  moviesStore.addToFavorites(props.movie);
+};
+
 </script>
 
 <template>
-  <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+  <div class="flex flex-col max-w-sm border border-gray-200 rounded-lg shadow">
     <router-link :to="{ name: 'movie-details', params: { id: props.movie.id } }">
       <img
         :src="`${IMAGE_BASE_URL_300}${props.movie.poster_path}`"
@@ -18,7 +23,7 @@ const props = defineProps({
         class="w-full h-64 object-cover rounded-t-lg"
       />
     </router-link>
-    <div class="p-5">
+    <div class="flex flex-col flex-1 p-5">
       <router-link :to="{ name: 'movie-details', params: { id: props.movie.id } }">
         <h2 class="mb-2 text-2xl font-bold tracking-tight">{{props.movie.title}}</h2>
       </router-link>
@@ -29,10 +34,6 @@ const props = defineProps({
         <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
         <span class="text-sm font-medium text-gray-900 underline">{{props.movie.vote_count}} reviews</span>
       </div>
-      <router-link to="/favorites" class="inline-flex items-center px-4 py-3 text-sm font-medium text-center
-                                            text-white rounded-lg bg-blue-800 ">
-        Add to Favorites
-      </router-link>
     </div>
   </div>
 </template>
