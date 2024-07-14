@@ -1,9 +1,15 @@
 <script setup>
+import {useMoviesStore} from "../store/movies.js";
 import {IMAGE_BASE_URL_300} from "../constants.js";
 
 const props = defineProps({
   movie: Object,
 });
+
+const moviesStore = useMoviesStore();
+const removeFromFavorites = () => {
+  moviesStore.removeFromFavorites(props.movie.id);
+};
 
 </script>
 
@@ -11,9 +17,9 @@ const props = defineProps({
   <div class="flex flex-col max-w-sm border border-gray-200 rounded-lg shadow">
     <router-link :to="{ name: 'movie-details', params: { id: props.movie.id } }">
       <img
-        :src="`${IMAGE_BASE_URL_300}${props.movie.poster_path}`"
-        alt="movie poster"
-        class="w-full h-64 object-cover rounded-t-lg"
+          :src="`${IMAGE_BASE_URL_300}${props.movie.poster_path}`"
+          alt="movie poster"
+          class="w-full h-64 object-cover rounded-t-lg"
       />
     </router-link>
     <div class="flex flex-col flex-1 p-5">
@@ -28,5 +34,9 @@ const props = defineProps({
         <span class="text-sm font-medium text-gray-900 underline">{{props.movie.vote_count}} reviews</span>
       </div>
     </div>
+    <button type="button"
+            @click="removeFromFavorites"
+            class="text-red-600 hover:text-white border border-red-700 hover:bg-red-700 font-medium
+      rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Remove</button>
   </div>
 </template>
