@@ -81,17 +81,13 @@ onMounted(() => {
           <div class="flex flex-wrap space-x-2">
             <span v-for="genre in movie.genres"
                   :key="genre.id"
-                  class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"> {{
-                genre.name
-              }} </span>
+                  class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"> {{ genre.name }} </span>
           </div>
           <span class="text-gray-700">Country:</span>
           <div class="flex flex-wrap space-x-2">
             <span v-for="country in movie.production_countries"
                   :key="country.id"
-                  class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"> {{
-                country.name
-              }} </span>
+                  class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"> {{ country.name }} </span>
           </div>
           <span class="text-gray-700">Release Date:</span>
           <div class="w-fit bg-teal-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
@@ -100,9 +96,7 @@ onMounted(() => {
           <span class="text-gray-700">Production:</span>
           <div class="flex flex-wrap space-x-2">
             <span v-for="production in movie.production_companies" :key="production.id"
-                  class="bg-purple-100 text-purple-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"> {{
-                production.name
-              }} </span>
+                  class="bg-purple-100 text-purple-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"> {{ production.name }} </span>
           </div>
         </div>
         <button

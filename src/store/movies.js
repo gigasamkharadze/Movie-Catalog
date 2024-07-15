@@ -25,6 +25,9 @@ export const useMoviesStore = defineStore({
             const data = await moviesApiService.getByTitle(title, page);
             this.movies = data.results;
         },
+        async getMovieById(id) {
+            return await moviesApiService.getMovieById(id);
+        },
         addToFavorites(movieId) {
             if (!this.favorites.includes(movieId)) {
                 this.favorites.push(movieId);
