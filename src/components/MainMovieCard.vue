@@ -11,7 +11,7 @@ const props = defineProps({
   <div class="flex flex-col max-w-sm border border-gray-200 rounded-lg shadow">
     <router-link :to="{ name: 'movie-details', params: { id: props.movie.id } }">
       <img
-        :src="`${IMAGE_BASE_URL_300}${props.movie.poster_path}`"
+        :src="props.movie.poster_path ? `${IMAGE_BASE_URL_300}${props.movie.poster_path}` : '/image-placeholder.svg'"
         alt="movie poster"
         class="w-full rounded-t-lg"
       />
