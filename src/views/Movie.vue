@@ -78,7 +78,7 @@ onMounted(() => {
                   first-letter:float-start">{{ movie.overview }}</p>
         <div class="grid grid-cols-2 gap-y-4 gap-x-2 p-4 bg-white rounded-lg shadow-md">
           <span class="text-gray-700">Genres:</span>
-          <div class="flex flex-wrap space-x-2">
+          <div class="flex flex-wrap gap-1">
             <span v-for="genre in movie.genres"
                   :key="genre.id"
                   class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"> {{ genre.name }} </span>
@@ -94,7 +94,7 @@ onMounted(() => {
             {{ movie.release_date }}
           </div>
           <span class="text-gray-700">Production:</span>
-          <div class="flex flex-wrap space-x-2">
+          <div class="flex flex-wrap gap-1">
             <span v-for="production in movie.production_companies" :key="production.id"
                   class="bg-purple-100 text-purple-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded"> {{ production.name }} </span>
           </div>
