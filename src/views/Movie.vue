@@ -5,6 +5,7 @@ import moviesApiService from "../services/api/moviesApiService.js";
 import ImageCarousel from "../components/ImageCarousel.vue";
 import MainMovieCard from "../components/MainMovieCard.vue";
 import {useMoviesStore} from "../store/movies.js";
+import MovieRaterStarts from "../components/shared/MovieRaterStarts.vue";
 
 const route = useRoute();
 const apiService = new moviesApiService();
@@ -69,9 +70,12 @@ onMounted(() => {
     <div class="flex flex-col w-9/12 mx-auto p-6 gap-3 shadow-2xl mb-10">
       <ImageCarousel :images="images.backdrops"/>
       <div>
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{movie.title}}</h5>
+        <div class="flex justify-between">
+          <h2 class="mb-2 text-3xl font-bold tracking-tight text-gray-900">{{ movie.title }}</h2>
+          <MovieRaterStarts/>
+        </div>
         <p class="mb-3 first-letter:text-5xl first-letter:font-bold first-letter:text-gray-900 first-letter:me-3
-                  first-letter:float-start">{{movie.overview}}</p>
+                  first-letter:float-start">{{ movie.overview }}</p>
         <div class="grid grid-cols-2 gap-y-4 gap-x-2 p-4 bg-white rounded-lg shadow-md">
           <span class="text-gray-700">Genres:</span>
           <div class="flex flex-wrap space-x-2">
