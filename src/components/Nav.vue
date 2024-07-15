@@ -10,11 +10,6 @@
             <img src="/movie.png" alt="movie icon" class="w-6 h-6">
             <span>Movies</span>
           </router-link>
-          <router-link to="/tv"
-                       class="flex w-full items-center py-2 gap-3 px-8 hover:bg-gradient-to-r from-gray-100 to-gray-200">
-            <img src="/tv.png" alt="tv icon" class="w-6 h-6">
-            <span>TV</span>
-          </router-link>
           <router-link to="/favorites"
                        class="flex w-full items-center py-2 gap-3 px-8 hover:bg-gradient-to-r from-gray-100 to-gray-200">
             <img src="/favorite.png" alt="favorite icon" class="w-6 h-6">
