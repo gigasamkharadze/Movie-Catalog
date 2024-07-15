@@ -13,7 +13,7 @@ const props = defineProps({
       <img
         :src="`${IMAGE_BASE_URL_300}${props.movie.poster_path}`"
         alt="movie poster"
-        class="w-full h-64 object-cover rounded-t-lg"
+        class="w-full rounded-t-lg"
       />
     </router-link>
     <div class="flex flex-col flex-1 p-5">
