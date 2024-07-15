@@ -55,7 +55,7 @@ onMounted(() => getMovies(currentPage.value));
           alt="Loading...">
       <span class="text-xl">Loading movies...</span>
     </div>
-    <div v-else class="grid grow gap-x-4 gap-y-8 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div v-else class="grid grow gap-x-4 gap-y-8 grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       <MainMovieCard v-for="movie in movies" :key="movie.id" :movie="movie"/>
     </div>
     <PagePaginationBar v-if="!isLoading"

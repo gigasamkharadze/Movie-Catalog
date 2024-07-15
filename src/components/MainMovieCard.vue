@@ -13,14 +13,14 @@ const props = defineProps({
       <img
         :src="props.movie.poster_path ? `${IMAGE_BASE_URL_300}${props.movie.poster_path}` : '/image-placeholder.svg'"
         alt="movie poster"
-        class="w-full rounded-t-lg"
+        class="rounded-t-lg"
       />
     </router-link>
-    <div class="flex flex-col flex-1 p-5">
+    <div class="flex flex-col flex-1 p-3">
       <router-link :to="{ name: 'movie-details', params: { id: props.movie.id } }">
-        <h2 class="mb-2 text-2xl font-bold tracking-tight">{{props.movie.title}}</h2>
+        <h2 class="mb-2 text-2xl font-bold tracking-tight line-clamp-1">{{props.movie.title}}</h2>
       </router-link>
-      <p class="line-clamp-4 mb-3 font-normal">{{props.movie.overview}}</p>
+      <p class="line-clamp-3 mb-3 font-normal">{{props.movie.overview}}</p>
       <div class="flex items-center mb-4">
         <img src="../assets/star.svg" class="w-4 h-4 me-1" alt="star icon" />
         <p class="ms-2 text-sm font-bold text-gray-900">{{props.movie.vote_average}}</p>
