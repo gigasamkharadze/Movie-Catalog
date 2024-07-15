@@ -1,8 +1,10 @@
 <script setup>
-import {ref, watch} from 'vue';
+import {onMounted, ref, watch} from 'vue';
+import {useRoute} from "vue-router";
 
 const hoveredStar = ref(0);
 const chosenStar = ref(0);
+const route = useRoute();
 
 const handleMouseOver = (index) => {
   hoveredStar.value = index;
@@ -14,8 +16,11 @@ const handleMouseLeave = () => {
 
 const handleMouseClick = (index) => {
   chosenStar.value = index;
-  // post request to the server
 }
+
+watch(() => route.path, () => {
+  chosenStar.value = 0;
+});
 
 </script>
 

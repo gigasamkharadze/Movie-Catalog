@@ -67,7 +67,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <div class="flex flex-col w-9/12 mx-auto p-6 gap-3 shadow-2xl mb-10">
+    <div class="flex flex-col w-3/4 mt-4 mx-auto gap-3 mb-10">
       <ImageCarousel :images="images.backdrops"/>
       <div>
         <div class="flex justify-between">
@@ -76,7 +76,7 @@ onMounted(() => {
         </div>
         <p class="mb-3 first-letter:text-5xl first-letter:font-bold first-letter:text-gray-900 first-letter:me-3
                   first-letter:float-start">{{ movie.overview }}</p>
-        <div class="grid grid-cols-2 gap-y-4 gap-x-2 p-4 bg-white rounded-lg shadow-md">
+        <div class="grid grid-cols-2 gap-y-4 gap-x-2 p-4 bg-white rounded-lg">
           <span class="text-gray-700">Genres:</span>
           <div class="flex flex-wrap gap-1">
             <span v-for="genre in movie.genres"
@@ -110,9 +110,9 @@ onMounted(() => {
     </div>
     <div>
       <h1 class="text-2xl font-semibold text-gray-800 px-6">Similar Movies</h1>
-      <div class="grid grid-cols-3 gap-4 overflow-x-auto p-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 overflow-x-auto p-6">
         <MainMovieCard v-for="movie in similarMovies.results"
-                       class="min-w-[300px]"
+                       class=""
                        :key="movie.id"
                        :movie="movie"/>
       </div>
