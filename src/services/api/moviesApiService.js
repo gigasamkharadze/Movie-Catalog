@@ -67,10 +67,27 @@ class MoviesApiService {
             this.handleError(error);
       }
   }
-
-    handleError(error) {
-        console.error('Error:', error);
-    }
+  async getGenres(){
+        try {
+            const url = `${this.baseUrl}/genre/movie/list?api_key=${this.API_KEY}`;
+            const response = await fetch(url, this.config);
+            return await response.json();
+        } catch (error) {
+                this.handleError(error);
+        }
+  }
+  async getMoviesByGenre(genreId, page = 1){
+      try {
+          const url = `${this.baseUrl}/discover/movie?with_genres=${genreId}&page=${page}&api_key=${this.API_KEY}`;
+          const response = await fetch(url, this.config);
+          return await response.json();
+      } catch (error) {
+          this.handleError(error);
+      }
+  }
+  handleError(error) {
+      console.error('Error:', error);
+  }
 }
 
 export default MoviesApiService;

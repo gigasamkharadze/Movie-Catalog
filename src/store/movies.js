@@ -9,6 +9,7 @@ export const useMoviesStore = defineStore({
     state: () => ({
         movies: [],
         cache: {},
+        genres: [],
         favorites: useLocalStorage('favorites', [])
     }),
     actions: {
@@ -28,6 +29,10 @@ export const useMoviesStore = defineStore({
         async getMovieById(id) {
             return await moviesApiService.getMovieById(id);
         },
+        async getMoviesByGenre(genreId, page = 1) {
+            const data = await moviesApiService.getMoviesByGenre(genreId, page);
+            this.movies = data.results;
+        },
         addToFavorites(movieId) {
             if (!this.favorites.includes(movieId)) {
                 this.favorites.push(movieId);
@@ -38,6 +43,10 @@ export const useMoviesStore = defineStore({
         },
         isFavorite(movieId) {
             return this.favorites.includes(movieId);
+        },
+        async getGenres() {
+            const data = await moviesApiService.getGenres();
+            this.genres = data.genres;
         }
     }
 });

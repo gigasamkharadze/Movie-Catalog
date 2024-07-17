@@ -5,13 +5,19 @@ import MainMovieCard from "../components/MainMovieCard.vue";
 import SharedSearchBar from "../components/shared/SharedSearchBar.vue";
 import PagePaginationBar from "../components/shared/PagePaginationBar.vue";
 import {useMoviesStore} from "../store/movies.js";
+import FilterBar from "../components/shared/FilterBar.vue";
 
 const moviesStore = useMoviesStore();
 const movies = computed(() => moviesStore.movies);
 const totalPages = 500;
 const currentPage = ref(1);
 const title = ref("");
-const isLoading = ref(true); // Added loading state
+const isLoading = ref(true);
+const genres = computed(() => moviesStore.genres);
+
+const getGenres = async () => {
+  await moviesStore.getGenres();
+};
 
 const onPageChange = async (page) => {
   isLoading.value = true;
@@ -42,12 +48,24 @@ const searchMovies = async (movieTitle) => {
   isLoading.value = false;
 };
 
-onMounted(() => getMovies(currentPage.value));
+const handleFilter = async (genreId) => {
+  isLoading.value = true;
+  currentPage.value = 1;
+  await moviesStore.getMoviesByGenre(genreId, currentPage.value);
+  isLoading.value = false;
+};
+
+onMounted(() => {
+  getGenres();
+  getMovies(currentPage.value);
+});
+
 </script>
 
 <template>
   <div class="px-12">
     <SharedSearchBar @search="searchMovies"/>
+    <FilterBar @filter-selected="handleFilter" :filters="genres"/>
     <div v-if="isLoading" class="h-16 flex justify-center items-center gap-4">
       <img
           class="w-6 h-6 animate-spin"
