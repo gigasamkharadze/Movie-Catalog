@@ -17,17 +17,17 @@ const removeFromFavorites = () => {
   <div class="flex flex-col max-w-sm border border-gray-200 rounded-lg shadow">
     <router-link :to="{ name: 'movie-details', params: { id: props.movie.id } }">
       <img
-          :src="`${IMAGE_BASE_URL_300}${props.movie.poster_path}`"
+          :src="props.movie.poster_path ? `${IMAGE_BASE_URL_300}${props.movie.poster_path}` : '/image-placeholder.svg'"
           alt="movie poster"
-          class="w-full h-64 object-cover rounded-t-lg"
+          class="rounded-t-lg"
       />
     </router-link>
     <div class="flex flex-col flex-1 p-5">
       <router-link :to="{ name: 'movie-details', params: { id: props.movie.id } }">
         <h2 class="mb-2 text-2xl font-bold tracking-tight">{{props.movie.title}}</h2>
       </router-link>
-      <p class="line-clamp-4 mb-3 font-normal">{{props.movie.overview}}</p>
-      <div class="flex items-center mb-4">
+      <p class="line-clamp-2 font-normal">{{props.movie.overview}}</p>
+      <div class="flex items-center">
         <img src="../assets/star.svg" class="w-4 h-4 me-1" alt="star icon" />
         <p class="ms-2 text-sm font-bold text-gray-900">{{props.movie.vote_average}}</p>
         <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
