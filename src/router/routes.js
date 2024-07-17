@@ -1,7 +1,11 @@
-import Main from "../views/Main.vue";
 import { defineComponent } from 'vue';
+
+import Main from "../views/Main.vue";
 import Favorites from "../views/Favorites.vue";
 import Movie from "../views/Movie.vue";
+import Account from "../views/Account.vue";
+import LoginForm from "../components/LoginForm.vue";
+import SignupForm from "../components/SignupForm.vue";
 
 
 const PlaceHolderView = defineComponent({});
@@ -24,14 +28,26 @@ export default [
         component: Favorites
     },
     {
-        path: '/tv',
-        name: 'tv',
-        component: PlaceHolderView
-    },
-    {
         path: '/account',
         name: 'account',
-        component: PlaceHolderView
+        component: Account,
+        children: [
+            {
+                path: 'profile',
+                name: 'profile',
+                component: PlaceHolderView
+            },
+            {
+                path: 'login',
+                name: 'login',
+                component: LoginForm
+            },
+            {
+                path: 'signup',
+                name: 'signup',
+                component: SignupForm
+            }
+            ]
     },
     {
         path: '/help',
