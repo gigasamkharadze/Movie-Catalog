@@ -88,6 +88,15 @@ class MoviesApiService {
           this.handleError(error);
       }
   }
+  async getSortedMoviesBy(sortBy, page = 1){
+      try {
+          const url = `${this.baseUrl}/discover/movie?sort_by=${sortBy}&page=${page}&api_key=${this.API_KEY}`;
+          const response = await fetch(url, this.config);
+          return await response.json();
+      } catch (error) {
+          this.handleError(error);
+      }
+  }
   handleError(error) {
       console.error('Error:', error);
   }
