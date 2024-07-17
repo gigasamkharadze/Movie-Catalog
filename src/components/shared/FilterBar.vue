@@ -3,14 +3,16 @@ import {ref} from "vue";
 const isDropdownOpen = ref(false);
 
 const emit = defineEmits(["filter-selected"]);
+const currentGenre = ref(null);
 
 const props = defineProps({
   filters: Array,
 });
 
-const handleDropdownOptionClick = (filterId) => {
+const handleDropdownOptionClick = (filterId, filterName) => {
   emit("filter-selected", filterId);
   isDropdownOpen.value = false;
+  currentGenre.value = filterName;
 };
 
 </script>
@@ -20,7 +22,7 @@ const handleDropdownOptionClick = (filterId) => {
     <button @click="isDropdownOpen = !isDropdownOpen"
             class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center
                     inline-flex items-center transition duration-200 ease-in-out"
-            type="button">Filter by genre
+            type="button">{{currentGenre || "Filter by genre"}}
       <img aria-hidden="true" class="w-2.5 h-2.5 ml-2" src="/dropdown-arrow.svg" alt="dropdown arrow">
     </button>
 
@@ -31,7 +33,7 @@ const handleDropdownOptionClick = (filterId) => {
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
           <li v-for="filter in filters" :key="filter.id">
             <span
-                @click="handleDropdownOptionClick(filter.id)"
+                @click="handleDropdownOptionClick(filter.id, filter.name)"
                 class="block px-4 py-2 hover:bg-gray-100 hover:cursor-pointer transition-colors duration-200 ease-in-out">{{filter.name}}</span>
           </li>
         </ul>
