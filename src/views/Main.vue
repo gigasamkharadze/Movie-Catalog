@@ -6,6 +6,8 @@ import SharedSearchBar from "../components/shared/SharedSearchBar.vue";
 import PagePaginationBar from "../components/shared/PagePaginationBar.vue";
 import {useMoviesStore} from "../store/movies.js";
 import FilterBar from "../components/shared/FilterBar.vue";
+import SorterBar from "../components/shared/SorterBar.vue";
+import {sortOptions} from "../constants.js";
 
 const moviesStore = useMoviesStore();
 const movies = computed(() => moviesStore.movies);
@@ -55,6 +57,13 @@ const handleFilter = async (genreId) => {
   isLoading.value = false;
 };
 
+const sortMovies = async (sortOption) => {
+  isLoading.value = true;
+  currentPage.value = 1;
+  await moviesStore.getSortedMoviesBy(sortOption, currentPage.value);
+  isLoading.value = false;
+};
+
 onMounted(() => {
   getGenres();
   getMovies(currentPage.value);
@@ -65,7 +74,10 @@ onMounted(() => {
 <template>
   <div class="px-12">
     <SharedSearchBar @search="searchMovies"/>
-    <FilterBar @filter-selected="handleFilter" :filters="genres"/>
+    <div class="flex items-center gap-4">
+      <FilterBar :filters="genres" @filter-selected="handleFilter"/>
+      <SorterBar :sortOptions="sortOptions" @sort-selected="sortMovies"/>
+    </div>
     <div v-if="isLoading" class="h-16 flex justify-center items-center gap-4">
       <img
           class="w-6 h-6 animate-spin"

@@ -33,6 +33,10 @@ export const useMoviesStore = defineStore({
             const data = await moviesApiService.getMoviesByGenre(genreId, page);
             this.movies = data.results;
         },
+        async getSortedMoviesBy(sortBy, page = 1) {
+            const data = await moviesApiService.getSortedMoviesBy(sortBy, page);
+            this.movies = data.results;
+        },
         addToFavorites(movieId) {
             if (!this.favorites.includes(movieId)) {
                 this.favorites.push(movieId);
