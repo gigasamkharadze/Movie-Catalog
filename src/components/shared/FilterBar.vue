@@ -31,6 +31,11 @@ const handleDropdownOptionClick = (filterId, filterName) => {
            id="dropdown"
            class="absolute z-10 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-44 max-h-60 overflow-y-auto custom-scroll">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+          <li>
+            <span
+                @click="handleDropdownOptionClick(null, 'All Genres')"
+                class="block px-4 py-2 hover:bg-gray-100 hover:cursor-pointer transition-colors duration-200 ease-in-out">All Genres</span>
+          </li>
           <li v-for="filter in filters" :key="filter.id">
             <span
                 @click="handleDropdownOptionClick(filter.id, filter.name)"
