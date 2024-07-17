@@ -78,9 +78,6 @@ class MoviesApiService {
     }
     async getMoviesByGenre(genreId, page = 1){
         try {
-            if (!genreId) {
-                return await this.getPage(page)
-            }
             const url = `${this.baseUrl}/discover/movie?with_genres=${genreId}&page=${page}&api_key=${this.API_KEY}`;
             const response = await fetch(url, this.config);
             return await response.json();
