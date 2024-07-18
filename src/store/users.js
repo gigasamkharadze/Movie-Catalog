@@ -16,9 +16,9 @@ export const useUsersStore = defineStore({
         }
     },
     actions:{
-        addUser(email, password) {
-            if (email === '' || password === '') {
-                this.error = 'Please fill in all fields'
+        signup(email, password, confirmPassword) {
+            if (password !== confirmPassword) {
+                this.error = 'Passwords do not match'
                 return
             }
             if (this.users.find(user => user["email"] === email)) {
@@ -29,10 +29,6 @@ export const useUsersStore = defineStore({
             this.error = null
         },
         login(email, password) {
-            if (email === '' || password === '') {
-                this.error = 'Please fill in all fields'
-                return
-            }
             const user = this.users.find(user => user["email"] === email)
             if (!user) {
                 this.error = 'User not found'
@@ -47,7 +43,6 @@ export const useUsersStore = defineStore({
         },
         logout() {
             this.user = null
-            this.error = null
         }
     }
 })

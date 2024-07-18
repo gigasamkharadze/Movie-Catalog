@@ -1,19 +1,38 @@
 <script setup>
 
 import {ref} from "vue";
+import {useRouter} from "vue-router";
+import {useUsersStore} from "../store/users.js";
+import Success from "./toasts/Success.vue";
+import Error from "./toasts/Error.vue";
+
+const router = useRouter();
+const userStore = useUsersStore();
+const success = ref(false);
+const error = ref(false);
 
 const email = ref("");
 const password = ref("");
 const repeatPassword = ref("");
 
 const handleSignupSubmit = () => {
-  // signup logic here
+  userStore.signup(email.value, password.value, repeatPassword.value);
+  if (!userStore.error){
+    success.value = true;
+    setTimeout(() => {
+      router.push({name:'login'});
+    }, 1000);
+  }else {
+    error.value = true;
+  }
 };
 
 </script>
 
 <template>
   <div>
+    <Success v-if="success" :message="'Your account has been created successfully!'"/>
+    <Error v-if="error" :message="userStore.error"/>
     <form @submit.prevent="handleSignupSubmit"
         class="max-w-sm mx-auto">
       <div class="mb-5">
@@ -22,6 +41,7 @@ const handleSignupSubmit = () => {
                name="email"
                type="email"
                id="email"
+               :class="{'border-red-500': userStore.error === 'User already exists'}"
                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                placeholder="name@flowbite.com"
                required />
@@ -32,6 +52,7 @@ const handleSignupSubmit = () => {
                name="password"
                type="password"
                id="password"
+               :class="{'border-red-500': userStore.error === 'Passwords do not match'}"
                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                required />
       </div>
@@ -41,6 +62,7 @@ const handleSignupSubmit = () => {
                name="repeatPassword"
                type="password"
                id="repeat-password"
+               :class="{'border-red-500': userStore.error === 'Passwords do not match'}"
                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                required />
       </div>

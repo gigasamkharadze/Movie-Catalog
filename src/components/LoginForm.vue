@@ -1,21 +1,35 @@
 <script setup>
-
 import {useUsersStore} from "../store/users.js";
 import {ref} from "vue";
+import Success from "./toasts/Success.vue";
+import Error from "./toasts/Error.vue";
+import {useRouter} from "vue-router";
 
-const usersStore = useUsersStore();
+const userStore = useUsersStore();
+const router = useRouter();
+const success = ref(false);
+const error = ref(false);
 
 const email = ref("");
 const password = ref("");
 
 const handleLoginSubmit = () => {
-//   login logic here
+  userStore.login(email.value, password.value);
+  if (!userStore.error){
+    success.value = true;
+    setTimeout(() => {
+      router.push({name:'login'});
+    }, 1000);
+  }else {
+    error.value = true;
+  }
 };
-
 </script>
 
 <template>
   <div>
+    <Success v-if="success" :message="'Your account has been created successfully!'"/>
+    <Error v-if="error" :message="userStore.error"/>
     <form
         @submit.prevent="handleLoginSubmit"
         class="max-w-sm mx-auto">

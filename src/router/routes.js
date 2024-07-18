@@ -31,12 +31,8 @@ export default [
         path: '/account',
         name: 'account',
         component: Account,
+        meta: {requiresAuth: true},
         children: [
-            {
-                path: 'profile',
-                name: 'profile',
-                component: PlaceHolderView
-            },
             {
                 path: 'login',
                 name: 'login',

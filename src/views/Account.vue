@@ -2,6 +2,7 @@
 import {useUsersStore} from "../store/users.js";
 import {computed} from "vue";
 import {useRouter} from "vue-router";
+import UserAccount from "../components/UserAccount.vue";
 
 const usersStore = useUsersStore();
 const user = computed(() => usersStore.user);
@@ -9,12 +10,13 @@ const user = computed(() => usersStore.user);
 const router = useRouter();
 const currentRouteName = computed(() => router.currentRoute.value.name);
 
+
 </script>
 
 <template>
   <div>
     <div v-if="user">
-      <h1>Welcome, {{ user["email"] }}</h1>
+      <UserAccount :user="user"/>
     </div>
     <div v-else>
       <div class="w-fit mx-auto mt-4 text-center text-gray-500 border-b">
