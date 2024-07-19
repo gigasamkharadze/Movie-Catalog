@@ -3,7 +3,7 @@
         <div class="flex flex-col h-full py-6">
             <div class="flex gap-2 mb-10 text-3xl px-8">
                 <img src="/watching.png" alt="icon-film" class="w-8 aspect-square animate-bounce"/>
-                <router-link to="/" class="">Filmo</router-link>
+                <router-link to="/" class="">Film</router-link>
             </div>
           <router-link to="/"
                        class="flex w-full items-center py-2 gap-3 px-8 hover:bg-gradient-to-r from-gray-100 to-gray-200">
@@ -34,5 +34,3 @@
         </div>
     </nav>
 </template>
-<script setup lang="ts">
-</script>
