@@ -1,5 +1,3 @@
-import { defineComponent } from 'vue';
-
 import Main from "../views/Main.vue";
 import Favorites from "../views/Favorites.vue";
 import Movie from "../views/Movie.vue";
@@ -8,8 +6,6 @@ import LoginForm from "../components/LoginForm.vue";
 import SignupForm from "../components/SignupForm.vue";
 import Help from "../views/Help.vue";
 
-
-const PlaceHolderView = defineComponent({});
 
 export default [
     {
@@ -50,11 +46,5 @@ export default [
         path: '/help',
         name: 'help',
         component: Help
-    },
-    {
-        path: '/settings',
-        name: 'settings',
-        component: PlaceHolderView
     }
-
 ]

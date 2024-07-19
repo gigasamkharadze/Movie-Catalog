@@ -41,6 +41,7 @@ const handleSignupSubmit = () => {
                name="email"
                type="email"
                id="email"
+               autocomplete="email"
                :class="{'border-red-500': userStore.error === 'User already exists'}"
                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                placeholder="name@flowbite.com"
@@ -52,6 +53,7 @@ const handleSignupSubmit = () => {
                name="password"
                type="password"
                id="password"
+               autocomplete="current-password"
                :class="{'border-red-500': userStore.error === 'Passwords do not match'}"
                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                required />
@@ -62,13 +64,18 @@ const handleSignupSubmit = () => {
                name="repeatPassword"
                type="password"
                id="repeat-password"
+               autocomplete="current-password"
                :class="{'border-red-500': userStore.error === 'Passwords do not match'}"
                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                required />
       </div>
       <div class="flex items-start mb-5">
         <div class="flex items-center h-5">
-          <input id="terms" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50"/>
+          <input id="terms"
+                 autocomplete="on"
+                 type="checkbox"
+                 value=""
+                 class="w-4 h-4 border border-gray-300 rounded bg-gray-50"/>
         </div>
         <label for="terms" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the
           <span class="text-blue-600 hover:underline">terms and conditions</span></label>
