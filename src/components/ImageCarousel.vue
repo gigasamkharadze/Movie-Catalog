@@ -5,7 +5,10 @@ import {ref} from "vue";
 const currentImageIndex = ref(0);
 
 const props = defineProps({
-  images: Array,
+  images: {
+    type: Array,
+    required: true
+  }
 });
 
 const setPreviousImage = () => {

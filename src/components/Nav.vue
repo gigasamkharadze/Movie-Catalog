@@ -21,11 +21,6 @@
             <img src="/account.png" alt="account icon" class="w-6 h-6">
             <span>Account</span>
           </router-link>
-          <router-link to="/settings"
-                       class="flex w-full items-center py-2 gap-3 px-8 hover:bg-gradient-to-r from-gray-100 to-gray-200">
-            <img src="/settings.png" alt="settings icon" class="w-6 h-6">
-            <span>Settings</span>
-          </router-link>
           <router-link to="/help"
                        class="flex w-full items-center py-2 gap-3 px-8 hover:bg-gradient-to-r from-gray-100 to-gray-200">
             <img src="/help.png" alt="help icon" class="w-6 h-6">

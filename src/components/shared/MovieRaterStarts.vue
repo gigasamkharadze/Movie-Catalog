@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref, watch} from 'vue';
+import {ref, watch} from 'vue';
 import {useRoute} from "vue-router";
 
 const hoveredStar = ref(0);

@@ -45,7 +45,7 @@ const handleLogout = () => {
             </tr>
             <tr>
               <td class="px-2 py-1 text-gray-500 font-semibold">Email</td>
-              <td class="px-2 py-1">{{ user.email }}</td>
+              <td class="px-2 py-1">{{ props.user.email }}</td>
             </tr>
             </tbody>
           </table>
