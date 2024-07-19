@@ -6,6 +6,7 @@ import Movie from "../views/Movie.vue";
 import Account from "../views/Account.vue";
 import LoginForm from "../components/LoginForm.vue";
 import SignupForm from "../components/SignupForm.vue";
+import Help from "../views/Help.vue";
 
 
 const PlaceHolderView = defineComponent({});
@@ -48,7 +49,7 @@ export default [
     {
         path: '/help',
         name: 'help',
-        component: PlaceHolderView
+        component: Help
     },
     {
         path: '/settings',
