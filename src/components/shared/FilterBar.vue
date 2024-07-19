@@ -36,7 +36,7 @@ const handleDropdownOptionClick = (filterId, filterName) => {
                 @click="handleDropdownOptionClick(null, 'All Genres')"
                 class="block px-4 py-2 hover:bg-gray-100 hover:cursor-pointer transition-colors duration-200 ease-in-out">All Genres</span>
           </li>
-          <li v-for="filter in filters" :key="filter.id">
+          <li v-for="filter in props.filters" :key="filter.id">
             <span
                 @click="handleDropdownOptionClick(filter.id, filter.name)"
                 class="block px-4 py-2 hover:bg-gray-100 hover:cursor-pointer transition-colors duration-200 ease-in-out">{{filter.name}}</span>

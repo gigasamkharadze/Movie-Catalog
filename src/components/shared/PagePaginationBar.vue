@@ -36,7 +36,7 @@ const pagination = (currentPage, totalPages) => {
       </li>
       <li
           @click="handlePageChange(page)"
-          v-for="page in pagination(currentPage, totalPages)"
+          v-for="page in pagination(props.currentPage, props.totalPages)"
           :key="page">
         <span
             :aria-current="page === currentPage ? 'page' : null"
